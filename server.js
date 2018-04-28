@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const {
@@ -21,7 +23,8 @@ app.get('/', (req, res) => {
 // GET dollar exchange rate for a specific country
 app.get('/currency/:cc', (req, res) => {
   var currencyCode = req.params.cc;
-  var currencyLayerAPI = `http://apilayer.net/api/live?access_key=0c321626c19f4a3090cb9fae87ad676c&currencies=${currencyCode}`;
+  var currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +
+    `${process.env.CURRENCY_API_KEY}&currencies=${currencyCode}`;
 
   axios.get(currencyLayerAPI).then((result) => {
     if (result.data.success === false) {

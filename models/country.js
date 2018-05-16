@@ -2,9 +2,9 @@ const {
   mongoose
 } = require('./../db/mongoose-connect');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var countrySchema = new Schema({
+let countrySchema = new Schema({
   Name: String,
   Alpha2Code: String,
   Alpha3Code: String,
@@ -23,7 +23,7 @@ var countrySchema = new Schema({
   FlagPng: String
 });
 
-var Country = mongoose.model('Country', countrySchema);
+let Country = mongoose.model('Country', countrySchema);
 
 module.exports = {
   Country

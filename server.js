@@ -11,8 +11,8 @@ app = express();
 
 // GET Countries API enpoint
 app.get('/', (req, res) => {
-  var projection = `Name Alpha2Code Alpha3Code Latitude Longitude NumericCode \
-  NativeLanguage CurrencyCode CurrencyName CurrencySymbol`;
+  let projection = `Name Alpha2Code Alpha3Code Latitude Longitude
+  CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {
     res.send(countries);
@@ -22,8 +22,8 @@ app.get('/', (req, res) => {
 
 // GET dollar exchange rate for a specific country
 app.get('/currency/:cc', (req, res) => {
-  var currencyCode = req.params.cc;
-  var currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +
+  let currencyCode = req.params.cc;
+  let currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +
     `${process.env.CURRENCY_API_KEY}&currencies=${currencyCode}`;
 
   axios.get(currencyLayerAPI).then((result) => {

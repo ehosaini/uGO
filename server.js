@@ -5,14 +5,15 @@ var _ = require('lodash');
 const axios = require('axios');
 const nunjucks = require('nunjucks');
 const striptags = require('striptags');
-const path = require('path');
+// const path = require('path');
 
 const {
   Country
 } = require('./models/country');
 
+var env = process.env.NODE_ENV || 'development';
 
-app = express();
+const app = express();
 app.set('views', './views');
 app.set('view engine', 'njk');
 app.use(express.static('views'));
@@ -33,7 +34,8 @@ app.get('/', (req, res) => {
 
   Country.find(null, projection).then((countries) => {
     res.render('index', {
-      countries
+      countries,
+      env
     });
   }).catch((e) => res.send());
 
@@ -97,7 +99,12 @@ app.get('/dos/:tag', (req, res) => {
   }).catch((e) => console.log(e));
 });
 
+// refresh browser on server restart
+if (env === 'development') {
+  const reload = require('reload');
+  reload(app);
+}
 
 app.listen(3000, () => {
-  console.log('Sever up at 3000');
+  console.log('Sever is up at 3000');
 });

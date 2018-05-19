@@ -9,7 +9,7 @@
     <select class="" name="">
       <option>Select Destination Country</option>
       <option>--------------------------</option>
-      {% for country in countries%}
+      {% for country in countries %}
         <option value={{country.Alpha2Code}}>{{ country.Name }}</option>
       {% endfor %}
     </select>
@@ -17,5 +17,9 @@
     <script type="text/javascript" src="/static/lib/jquery-3.3.1.min.js"></script>
     <script src="/static/lib/nunjucks.js"></script>
     <script type="text/javascript" src="/static/scripts/index.js"></script>
+    <!-- // only in deve env: refresh browser on server restart -->
+    {% if (env === 'development') %}
+      <script src="/reload/reload.js"></script>
+    {% endif %}
   </body>
 </html>

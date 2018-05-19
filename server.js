@@ -3,7 +3,9 @@ require('dotenv').config();
 const express = require('express');
 var _ = require('lodash');
 const axios = require('axios');
+const nunjucks = require('nunjucks');
 const striptags = require('striptags');
+const path = require('path');
 
 const {
   Country
@@ -11,19 +13,43 @@ const {
 
 
 app = express();
+app.set('views', './views');
+app.set('view engine', 'njk');
+app.use(express.static('views'));
+app.use('/static', express.static('static'));
+
+// configure nunjucks template engine
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app,
+  watch: true
+});
+
+
+// ---------- GET Home page
+app.get('/', (req, res) => {
+  let projection = `Name Alpha2Code Alpha3Code Latitude Longitude
+  CurrencyCode CurrencyName CurrencySymbol`;
+
+  Country.find(null, projection).then((countries) => {
+    res.render('index', {
+      countries
+    });
+  }).catch((e) => res.send());
+
+});
 
 // ----------  GET Countries API enpoint
-app.get('/', (req, res) => {
+app.get('/countries', (req, res) => {
   let projection = `Name Alpha2Code Alpha3Code Latitude Longitude
   CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {
     res.send(countries);
   }).catch((e) => res.send());
-
 });
 
-// ------------- GET dollar exchange rate for a specific country
+// ----------- GET dollar exchange rate for a specific country
 app.get('/currency/:cc', (req, res) => {
   let currencyCode = req.params.cc;
   let currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +

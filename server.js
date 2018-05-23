@@ -22,10 +22,8 @@ app.use('/static', express.static('static'));
 // configure nunjucks template engine
 nunjucks.configure('views', {
   autoescape: true,
-  express: app,
-  watch: true
+  express: app
 });
-
 
 // ---------- GET Home page
 app.get('/', (req, res) => {
@@ -104,6 +102,7 @@ if (env === 'development') {
   const reload = require('reload');
   reload(app);
 }
+
 
 app.listen(3000, () => {
   console.log('Sever is up at 3000');

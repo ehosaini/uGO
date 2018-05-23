@@ -63,7 +63,14 @@ body {
   width: 90vw;
 }
 
-.exchange-rate{
+.content-overflow {
+	overflow: scroll;
+}
+
+.exchange-rate {
+	margin: 10px 0 0;
+}
+.exchange-rate-info{
   height: 30%;
   margin: 10px 0 0;
 }
@@ -77,8 +84,10 @@ body {
 
 }
 
-.embassy-consulate-info h6{
-  text-align: center;;
+.country-info-titles {
+	font-weight: bold;
+  text-align: center;
+
 }
 
 .info-section{
@@ -98,7 +107,20 @@ body {
 }
 
 .map-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
   height: 100%;
+}
+
+.map-row{
+	height: 100%;
+}
+
+.map-column{
+	align-items: center;
+	display: flex;
+	height: 100%;
 }
 
 .security-info{
@@ -107,4 +129,13 @@ body {
 
 .security-info h6{
   text-align: center;
+}
+
+.select-country{
+	height: 100px;
+	padding: 5px;
+}
+
+.select-country select{
+	height: 32px;
 }

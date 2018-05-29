@@ -5,7 +5,7 @@ var _ = require('lodash');
 const axios = require('axios');
 const nunjucks = require('nunjucks');
 const striptags = require('striptags');
-// const path = require('path');
+const path = require('path');
 
 const {
   Country
@@ -14,32 +14,33 @@ const {
 var env = process.env.NODE_ENV || 'development';
 
 const app = express();
-app.set('views', './views');
-app.set('view engine', 'njk');
-app.use(express.static('views'));
-app.use('/static', express.static('static'));
 
-// configure nunjucks template engine
+// configure view engine
 nunjucks.configure('views', {
   autoescape: true,
   express: app
 });
 
-// ---------- GET Home page
+// app.set('views', './views');
+app.set('views', path.join(__dirname, '/views'));
+app.set('view engine', 'html');
+app.use(express.static('static'));
+app.use('/static', express.static('static'));
+
+
+// ---------------- GET Home page  ----------------------
 app.get('/', (req, res) => {
   let projection = `Name Alpha2Code Alpha3Code Latitude Longitude
   CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {
     res.render('index', {
-      countries,
-      env
+      countries
     });
   }).catch((e) => res.send());
-
 });
 
-// ----------  GET Countries API enpoint
+// ----------  GET Countries API enpoint -----------------
 app.get('/countries', (req, res) => {
   let projection = `Name Alpha2Code Alpha3Code Latitude Longitude
   CurrencyCode CurrencyName CurrencySymbol`;
@@ -49,7 +50,7 @@ app.get('/countries', (req, res) => {
   }).catch((e) => res.send());
 });
 
-// ----------- GET dollar exchange rate for a specific country
+// ----------- GET dollar exchange rate for a specific country ------------------
 app.get('/currency/:cc', (req, res) => {
   let currencyCode = req.params.cc;
   let currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +
@@ -61,13 +62,12 @@ app.get('/currency/:cc', (req, res) => {
         error: 'sorry, server could not find the exchange rate.'
       });
     }
-
     res.send(result.data);
   }).catch((e) => console.log(e));
 
 });
 
-// ---------- GET country-specific travel info from the State Department API
+// ---------- GET country-specific travel info from the State Department API ----------
 app.get('/dos/:tag', (req, res) => {
   const alpha2Code = req.params.tag;
   const dosCtiAPI = `https://cadataapi.state.gov/api/CountryTravelInformation/${alpha2Code}`;
@@ -86,7 +86,7 @@ app.get('/dos/:tag', (req, res) => {
       'safety_and_security', 'travel_embassyAndConsulate', 'last_update_date'
     ]);
 
-    // strip html tag from returned data
+    // strip html tags from returned data
     const strippedData = {};
     _.forIn(pickedData, (value, key) => {
       let strippedValue = striptags(value, ['p', 'a', 'h', 'i', 'ul', 'li', 'b']);
@@ -96,12 +96,6 @@ app.get('/dos/:tag', (req, res) => {
 
   }).catch((e) => console.log(e));
 });
-
-// refresh browser on server restart
-if (env === 'development') {
-  const reload = require('reload');
-  reload(app);
-}
 
 
 app.listen(3000, () => {

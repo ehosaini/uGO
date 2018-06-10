@@ -18,7 +18,9 @@ const app = express();
 // configure view engine
 nunjucks.configure('views', {
   autoescape: true,
-  express: app
+  express: app,
+  watch: true,
+  noCache: true
 });
 
 // app.set('views', './views');

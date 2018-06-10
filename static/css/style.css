@@ -48,7 +48,7 @@ table {
 /* Main page styles */
 
 body {
- background-color: #e6ecff;
+ /* background-color: #e6ecff; */
 }
 
 
@@ -138,4 +138,11 @@ body {
 
 .select-country select{
 	height: 32px;
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+	height: 250px;
+	width: 100%;
 }

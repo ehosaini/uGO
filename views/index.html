@@ -9,13 +9,15 @@
 
 
   <body>
-    
+
     <div class="contents">
       <section class="map-section">
-        <div class="container bg-secondary map-container">
+        <div class="container map-container">
           <div class="row map-row">
             <div class="col-12 map-column">
-
+                <!-- background map -->
+                <div class="" id="map"></div>
+                <!-- countries dropdown list -->
                 <div class="select-country" id="select-country">
                   <select class="" name="">
                     <option>Select Destination Country</option>
@@ -70,8 +72,12 @@
 
     </div>
 
+
     <script type="text/javascript" src="/static/lib/jquery-3.3.1.min.js"></script>
     <script src="/static/lib/nunjucks.js"></script>
     <script type="text/javascript" src="/static/scripts/index.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAviTVno7epX_nemEXhxzfvSRAy8HJttUw&callback=initMap"
+    async defer></script>
+
   </body>
 </html>

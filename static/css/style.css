@@ -73,6 +73,7 @@ body {
 .exchange-rate-info{
   height: 30%;
   margin: 10px 0 0;
+	padding: 6px;
 }
 
 .entry-exit{
@@ -115,6 +116,7 @@ body {
 
 .map-row{
 	height: 100%;
+	width: 100%;
 }
 
 .map-column{
@@ -133,6 +135,7 @@ body {
 
 .select-country{
 	height: 100px;
+	margin: auto;
 	padding: 5px;
 }
 
@@ -143,6 +146,8 @@ body {
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
-	height: 250px;
+	height: 100%;
+	position: absolute;
 	width: 100%;
+	z-index: -1;
 }

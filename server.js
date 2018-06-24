@@ -52,7 +52,7 @@ app.get('/countries', (req, res) => {
   }).catch((e) => res.send());
 });
 
-// ----------- GET dollar exchange rate for a specific country ------------------
+// ----------- GET dollar exchange rate for a specific country ---------------
 app.get('/currency/:cc', (req, res) => {
   let currencyCode = req.params.cc;
   let currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +

@@ -19,14 +19,14 @@
                 <div class="" id="map"></div>
                 <!-- countries dropdown list -->
                 <div class="select-country" id="select-country">
-                  <select class="" name="">
+                  <select class="" name="country-list">
                     <option>Where will uGO?</option>
                     <option>--------------------------</option>
                     {% for country in countries %}
-                      <option value={{country.Alpha2Code}}>{{ country.Name }}</option>
+                      <option class="country" value={{country.Alpha2Code}}>{{ country.Name }}</option>
                     {% endfor %}
                   </select>
-                  <button class="btn-sm btn-default" type="submit" name="button">GO!</button>
+                  <button class="btn-sm btn-default" type="submit" name="go-button">GO!</button>
                 </div>
 
             </div>

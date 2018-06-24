@@ -32,7 +32,7 @@ app.use('/static', express.static('static'));
 
 // ---------------- GET Home page  ----------------------
 app.get('/', (req, res) => {
-  let projection = `Name Alpha2Code Alpha3Code Latitude Longitude
+  let projection = `-_id Name Alpha2Code Latitude Longitude
   CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {

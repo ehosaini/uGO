@@ -23,7 +23,7 @@
                     <option>Where will uGO?</option>
                     <option>--------------------------</option>
                     {% for country in countries %}
-                      <option class="country" value={{country.Alpha2Code}}>{{ country.Name }}</option>
+                      <option class="country" value="{{country}}">{{ country.Name }}</option>
                     {% endfor %}
                   </select>
                   <button class="btn-sm btn-default" type="submit" name="go-button">GO!</button>

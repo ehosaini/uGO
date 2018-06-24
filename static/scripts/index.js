@@ -24,17 +24,15 @@ $(document).ready(function() {
     var selectedCountry = $("select[name='country-list'] option:selected");
 
     if (selectedCountry.hasClass('country')) {
-      countryObject['countryName'] = selectedCountry.text();
-      countryObject['alpha2Code'] = selectedCountry.val();
+      countryObject = selectedCountry.val();
     } else {
-      countryObject['countryName'] = null;
-      countryObject['alpha2Code'] = null;
+      countryObject = {};
     }
   });
 
 
   goButton.on('click', function(e) {
-    if (!countryObject['countryName'] || !countryObject['alpha2Code']) {
+    if (Object.keys(countryObject).length == 0) {
       alert("Please select a county.");
     }
   });

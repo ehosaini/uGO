@@ -53,8 +53,8 @@ app.get('/countries', (req, res) => {
 });
 
 // ----------- GET dollar exchange rate for a specific country ---------------
-app.get('/currency/:cc', (req, res) => {
-  let currencyCode = req.params.cc;
+app.get('/currency', (req, res) => {
+  let currencyCode = req.query.cc;
   let currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +
     `${process.env.CURRENCY_API_KEY}&currencies=${currencyCode}`;
 
@@ -70,8 +70,8 @@ app.get('/currency/:cc', (req, res) => {
 });
 
 // ---------- GET country-specific travel info from the State Department API ----------
-app.get('/dos/:tag', (req, res) => {
-  const alpha2Code = req.params.tag;
+app.get('/dos', (req, res) => {
+  const alpha2Code = req.query.tag;
   const dosCtiAPI = `https://cadataapi.state.gov/api/CountryTravelInformation/${alpha2Code}`;
 
   axios.get(dosCtiAPI).then((result) => {

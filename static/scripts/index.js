@@ -33,7 +33,7 @@ $(document).ready(function() {
 
   goButton.on('click', function(e) {
     if (Object.keys(countryObject).length == 0) {
-      alert("Please select a county.");
+      alert("Please select a country.");
     }
   });
 });

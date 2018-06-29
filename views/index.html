@@ -23,7 +23,7 @@
                     <option>Where will uGO?</option>
                     <option>--------------------------</option>
                     {% for country in countries %}
-                      <option class="country" value="{{country}}">{{ country.Name }}</option>
+                      <option class="country" value="{{country | dump }}">{{ country.Name }}</option>
                     {% endfor %}
                   </select>
                   <button class="btn-sm btn-default" type="submit" name="go-button">GO!</button>
@@ -75,9 +75,11 @@
 
     <script type="text/javascript" src="/static/lib/jquery-3.3.1.min.js"></script>
     <script src="/static/lib/nunjucks.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script type="text/javascript" src="/static/scripts/index-helpers.js"></script>
     <script type="text/javascript" src="/static/scripts/index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAviTVno7epX_nemEXhxzfvSRAy8HJttUw&callback=initMap"
-    async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAviTVno7epX_nemEXhxzfvSRAy8HJttUw&callback=initMap"
+    async defer></script> -->
 
   </body>
 </html>

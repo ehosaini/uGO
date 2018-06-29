@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
   CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {
+    JSON.stringify(countries);
     res.render('index', {
       countries
     });

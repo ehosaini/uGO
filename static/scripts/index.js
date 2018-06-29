@@ -11,12 +11,15 @@ function initMap() {
   });
 }
 
-
+// ------------- Begining jQuery document-ready handler function
 $(document).ready(function() {
   // DOM elements selections
   const goButton = $("button[name='go-button']");
   const countriesList = $("select[name='country-list']");
   const convertedCurrency = $('#exchange-rate');
+  const entryExit = $('#entry-exit');
+  const USembassy = $('#embassy-consulate-info');
+  const securityInfo = $('#security-info')
 
   // update input value when user selects a new country
   // Sample returned data below
@@ -39,8 +42,8 @@ $(document).ready(function() {
 
   });
 
-  // Populate info section of DOM when user clicks on the Go! button
-  goButton.on('click', function(e) {
+  // --------- Begining handler function for the Go! button
+  goButton.on('click', function(error) {
     if (Object.keys(countryObject).length == 0) {
       alert("Please select a country.");
       return;
@@ -49,8 +52,8 @@ $(document).ready(function() {
     // Populate currency info
     const cc = countryObject.CurrencyCode;
     currencyAjaxPromise(cc).then((result) => {
-      /* convert $100 using the returned exchange rate & format to
-         show the converted currency name */
+      /* convert $100 using the returned exchange rate and
+      format result to show the converted currency name */
       const converted = numeral(result.quotes[`USD${cc}`] * 100).format('0,0.00');
       const formatConverted = `${converted} ${countryObject.CurrencyName}`;
       convertedCurrency.text(formatConverted);
@@ -58,8 +61,18 @@ $(document).ready(function() {
       convertedCurrency.text('No exchange rate available.');
     });
 
+    // Populate country travel information
+    const al = countryObject.Alpha2Code;
+
+    countryInfoPromise(al).then((result) => {
+      entryExit.html(result['entry_exit_requirements']);
+      USembassy.html(result['travel_embassyAndConsulate']);
+      securityInfo.html(result['safety_and_security']);
+    }).catch((error) => {
+      console.log(error);
+    })
   });
+  // ----------- end handler function for the GO! button
 
 
-
-});
+}); // -------- end of jQuery document-ready handler function

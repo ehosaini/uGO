@@ -60,20 +60,46 @@ body {
   bottom: 0;
   left: 0;
   height: 90vh;
-  width: 90vw;
+  width: 100vw;
 }
 
 .content-overflow {
-	overflow: scroll;
+	overflow: auto;
 }
+
+.country-info {
+	height: 45vh;
+	line-height: 1.2;
+	margin-top: 8px;
+}
+
+.country-info p+p {
+	margin-top: 8px;
+}
+
+.country-info b{
+	font-weight: bold;
+}
+
+.country-info-titles {
+	font-family: Arial, Helvetica, sans-serif;
+}
+#embassy-consulate-info {
+	height: 36.4vh;
+}
+
 
 .exchange-rate {
 	margin: 10px 0 0;
 }
-.exchange-rate-info{
-  height: 30%;
-  margin: 10px 0 0;
+
+.exchange-rate-info {
+  margin: 5px 0 0;
 	padding: 6px;
+}
+
+.exchange-rate-info h5{
+	height: 20%;
 }
 
 .entry-exit{
@@ -82,6 +108,7 @@ body {
 
 .embassy-consulate-info{
   margin: 10px 0 0;
+	padding: 6px;
 
 }
 
@@ -101,10 +128,12 @@ body {
 
 .info-row{
   height: 100%;
+	
 }
 
 .map-section{
   height: 45%;
+	/* width: 100%; */
 }
 
 .map-container{
@@ -112,6 +141,7 @@ body {
 	align-items: center;
 	justify-content: center;
   height: 100%;
+	/* width: 100%; */
 }
 
 .map-row{
@@ -123,6 +153,7 @@ body {
 	align-items: center;
 	display: flex;
 	height: 100%;
+	width: 100%;
 }
 
 .security-info{
@@ -144,7 +175,7 @@ body {
 }
 
 /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+element that contains the map. */
 #map {
 	height: 100%;
 	position: absolute;

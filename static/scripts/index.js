@@ -50,6 +50,7 @@ $(document).ready(function() {
     }
 
     // Populate currency info
+
     const cc = countryObject.CurrencyCode;
     currencyAjaxPromise(cc).then((result) => {
       /* convert $100 using the returned exchange rate and

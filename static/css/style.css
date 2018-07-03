@@ -96,6 +96,12 @@ body {
 .exchange-rate-info {
   margin: 5px 0 0;
 	padding: 6px;
+
+}
+
+.exchange-rate-info h5{
+  height: 20%;
+
 }
 
 .exchange-rate-info h5{

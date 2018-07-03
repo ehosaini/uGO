@@ -78,6 +78,7 @@ $(document).ready(function() {
     selectCountry.css('margin-bottom', '150px');
     
     // Populate currency info
+
     const cc = countryObject.CurrencyCode;
 
     currencyAjaxPromise(cc).then((result) => {

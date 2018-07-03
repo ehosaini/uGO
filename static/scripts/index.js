@@ -1,5 +1,5 @@
 // Generate GoogleMap
-let map;
+let map = null;
 
 function initMap() {
   map = new google.maps.Map($('#map')[0], {
@@ -7,8 +7,17 @@ function initMap() {
       lat: 51.5074,
       lng: 0.1278
     },
-    zoom: 3
+    zoom: 2
   });
+}
+
+let position = null;
+let marker = null;
+
+function dropMarker(position) {
+  marker = new google.maps.Marker(
+    {position, map, animation: google.maps.Animation.DROP}
+  );
 }
 
 // ------------- Begining jQuery document-ready handler function
@@ -19,7 +28,8 @@ $(document).ready(function() {
   const convertedCurrency = $('#exchange-rate');
   const entryExit = $('#entry-exit');
   const USembassy = $('#embassy-consulate-info');
-  const securityInfo = $('#security-info')
+  const securityInfo = $('#security-info');
+  const selectCountry = $('#select-country');
 
   // update input value when user selects a new country
   // Sample returned data below
@@ -43,15 +53,33 @@ $(document).ready(function() {
   });
 
   // --------- Begining handler function for the Go! button
-  goButton.on('click', function(error) {
+  goButton.on('click', function(e) {
     if (Object.keys(countryObject).length == 0) {
       alert("Please select a country.");
       return;
     }
 
-    // Populate currency info
+    // Remove marker from previous search  
+    if(marker) {
+      marker.setMap(null);
+    }
+    
+    // Drop a marker on the map
+    const position = {lat: Number(countryObject.Latitude), 
+      lng: Number(countryObject.Longitude)};
 
+    // Center & zoom the map on the new marker
+    map.setCenter(position);
+    map.setZoom(4);
+
+    // Add new marker with half a second delay
+    setTimeout(() => dropMarker(position), 500);
+    
+    selectCountry.css('margin-bottom', '150px');
+    
+    // Populate currency info
     const cc = countryObject.CurrencyCode;
+
     currencyAjaxPromise(cc).then((result) => {
       /* convert $100 using the returned exchange rate and
       format result to show the converted currency name */

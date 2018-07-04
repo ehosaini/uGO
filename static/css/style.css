@@ -109,7 +109,8 @@ body {
 }
 
 .entry-exit{
-  margin: 10px 0 0;
+	margin: 10px 0 0;
+	padding: 0 5px;
 }
 
 .embassy-consulate-info{
@@ -163,7 +164,8 @@ body {
 }
 
 .security-info{
-  margin: 10px 0 0;
+	margin: 10px 0 0;
+	padding: 0 5px;
 }
 
 .security-info h6{

@@ -59,6 +59,13 @@ $(document).ready(function() {
       return;
     }
 
+    // Clear country info fields from previous seach
+    convertedCurrency.text('');
+    USembassy.html('')
+    entryExit.html('');
+    securityInfo.html('');
+
+
     // Remove marker from previous search  
     if(marker) {
       marker.setMap(null);

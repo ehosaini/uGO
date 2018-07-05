@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-var _ = require('lodash');
+const _ = require('lodash');
 const axios = require('axios');
 const nunjucks = require('nunjucks');
 const striptags = require('striptags');
@@ -100,7 +100,9 @@ app.get('/dos', (req, res) => {
   }).catch((e) => console.log(e));
 });
 
+// Setup port constant to use the proper env variable
+const port = process.env.PORT || 3000;
 
 app.listen(3000, () => {
-  console.log('Sever is up at 3000');
+  console.log(`Sever is listening to port ${port}.`);
 });

@@ -103,6 +103,6 @@ app.get('/dos', (req, res) => {
 // Setup port constant to use the proper env variable
 const port = process.env.PORT || 3000;
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log(`Sever is listening to port ${port}.`);
 });

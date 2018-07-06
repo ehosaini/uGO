@@ -1,4 +1,20 @@
-# uGO
-This application will provide travelers with essential information about a destination country such as the current exchange rate, US State Department security advisory notices and vaccination information.
+# uGO Travel App Version 1.0
 
-This application is currently under development and will be utilizing Node.js, Express.js, JQuery, Bootstrap 4.0 and MongoDB.
+## Underlying Technologies: 
+Node.js, Express.js, MongoDB, jQuery and Bootstrap 4.0.
+
+<br>
+
+## APIs Consumed:
+**1. For currency exchange rate:** currencyLayer
+
+**2. For country specific info:** US Department of State
+
+<br>
+
+## Description:
+This application provides important information about a destination country that the US travellers may want to know in advance. Information include exchange rate, entry/exit requirements and safety/security advisory notices. Though the information provided applies to the US citizens, nationals of other countries can also benefit from it.
+
+
+
+# [Click to see the app live !](https://ugo-travel-app.herokuapp.com/)

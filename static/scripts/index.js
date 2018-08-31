@@ -62,7 +62,7 @@ $(document).ready(function() {
     // Let user know that data is being loaded
 
     const queText = '<div class="text-info mx-auto">\
-                      <p>Updating data ....</p>\
+                      <p>Loading....</p>\
                     </div>'
     convertedCurrency.text('');
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
         remove the temporary Bootsrap classes that were added 
         in the begining of handler
       */
-     
+
       entryExit.removeClass("d-flex align-items-center");
       USembassy.removeClass("d-flex align-items-center");
       securityInfo.removeClass("d-flex align-items-center");

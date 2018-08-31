@@ -59,12 +59,24 @@ $(document).ready(function() {
       return;
     }
 
-    // Clear country info fields from previous seach
-    convertedCurrency.text('');
-    USembassy.html('')
-    entryExit.html('');
-    securityInfo.html('');
+    // Let user know that data is being loaded
 
+    const queText = '<div class="text-info mx-auto">\
+                      <p>Updating data ....</p>\
+                    </div>'
+    convertedCurrency.text('');
+
+    // temporarily add Bootstrap classes to center ques
+    USembassy.addClass("d-flex align-items-center");
+    USembassy.html(queText)
+    
+    entryExit.addClass("d-flex align-items-center");
+    entryExit.html(queText);
+
+    securityInfo.addClass("d-flex align-items-center");
+    securityInfo.html(queText);
+
+   
 
     // Remove marker from previous search  
     if(marker) {
@@ -79,13 +91,7 @@ $(document).ready(function() {
     map.setCenter(position);
     map.setZoom(4);
 
-    // Add new marker with half a second delay
-    setTimeout(() => dropMarker(position), 500);
-    
-    selectCountry.css('margin-bottom', '150px');
-    
     // Populate currency info
-
     const cc = countryObject.CurrencyCode;
 
     currencyAjaxPromise(cc).then((result) => {
@@ -102,12 +108,27 @@ $(document).ready(function() {
     const al = countryObject.Alpha2Code;
 
     countryInfoPromise(al).then((result) => {
+      /* 
+        remove the temporary Bootsrap classes that were added 
+        in the begining of handler
+      */
+     
+      entryExit.removeClass("d-flex align-items-center");
+      USembassy.removeClass("d-flex align-items-center");
+      securityInfo.removeClass("d-flex align-items-center");
+
       entryExit.html(result['entry_exit_requirements']);
       USembassy.html(result['travel_embassyAndConsulate']);
       securityInfo.html(result['safety_and_security']);
     }).catch((error) => {
       console.log(error);
     })
+    // Add new marker with half a second delay
+    setTimeout(() => dropMarker(position), 500);
+    
+    selectCountry.css('margin-bottom', '150px');
+    
+  
   });
   // ----------- end handler function for the GO! button
 

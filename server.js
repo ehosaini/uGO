@@ -6,6 +6,7 @@ const axios = require('axios');
 const nunjucks = require('nunjucks');
 const striptags = require('striptags');
 const path = require('path');
+const cors = require('cors');
 
 const {
   Country
@@ -14,6 +15,8 @@ const {
 var env = process.env.NODE_ENV || 'development';
 
 const app = express();
+
+app.use(cors())
 
 // configure view engine
 nunjucks.configure('views', {

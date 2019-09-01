@@ -7,6 +7,7 @@ const nunjucks = require('nunjucks');
 const striptags = require('striptags');
 const path = require('path');
 const cors = require('cors');
+const SECRETS = require('./config/SECRETS');
 
 const {
   Country
@@ -35,13 +36,15 @@ app.use('/static', express.static('static'));
 
 // ---------------- GET Home page  ----------------------
 app.get('/', (req, res) => {
-  let projection = `-_id Name Alpha2Code Latitude Longitude
+  let projection = `-_id Name Alpha2Code Latitude Longitude;
   CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {
-    JSON.stringify(countries);
+    const API_KEY = SECRETS.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY;
+    const SourceString = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
     res.render('index', {
-      countries
+      countries,
+      SourceString
     });
   }).catch((e) => res.send());
 });

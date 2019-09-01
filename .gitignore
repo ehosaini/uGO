@@ -1,7 +1,8 @@
-gulpfile.js
-node_modules
-package-lock.json
-#sandbox
-sandbox/asyncAwait.js
-sandbox/retrieve-countries.js
+# Files
 .env
+gulpfile.js
+.DS_Store
+# Folders
+sandbox/*
+config/*
+node_modules

@@ -7,7 +7,10 @@ const nunjucks = require('nunjucks');
 const striptags = require('striptags');
 const path = require('path');
 const cors = require('cors');
-const SECRETS = require('./config/SECRETS');
+
+if(process.env.NODE_ENV !== 'production') {
+  const SECRETS = require('./config/SECRETS');
+}
 
 const {
   Country

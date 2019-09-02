@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
   CurrencyCode CurrencyName CurrencySymbol`;
 
   Country.find(null, projection).then((countries) => {
-    const API_KEY = SECRETS.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY;
+    const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
     const SourceString = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
     res.render('index', {
       countries,
@@ -65,8 +65,8 @@ app.get('/countries', (req, res) => {
 // ----------- GET dollar exchange rate for a specific country ---------------
 app.get('/currency', (req, res) => {
   let currencyCode = req.query.cc;
-  let currencyLayerAPI = 'http://apilayer.net/api/live?access_key=' +
-    `${process.env.CURRENCY_API_KEY}&currencies=${currencyCode}`;
+  let currencyLayerAPI = `http://apilayer.net/api/live?access_key=
+                          ${process.env.CURRENCY_API_KEY}&currencies=${currencyCode}`;
 
   axios.get(currencyLayerAPI).then((result) => {
     if (result.data.success === false) {
